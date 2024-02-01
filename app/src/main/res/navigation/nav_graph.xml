@@ -7,22 +7,22 @@
 
     <fragment
         android:id="@+id/homeScreenFragment"
-        android:name="com.example.familybudget.ui.homeScreen.HomeScreenFragment"
+        android:name="com.example.familybudget.ui.ui.homeScreen.HomeScreenFragment"
         android:label="fragment_home_screen"
         tools:layout="@layout/fragment_home_screen" />
     <fragment
         android:id="@+id/analyticsFragment"
-        android:name="com.example.familybudget.ui.analyticsScreen.AnalyticsFragment"
+        android:name="com.example.familybudget.ui.ui.analyticsScreen.AnalyticsFragment"
         android:label="fragment_analytics"
         tools:layout="@layout/fragment_analytics" />
     <fragment
-        android:id="@+id/assetsFragment"
-        android:name="com.example.familybudget.ui.assetsScreen.AssetsFragment"
-        android:label="fragment_assets"
-        tools:layout="@layout/fragment_assets" />
-    <fragment
         android:id="@+id/settingsFragment"
-        android:name="com.example.familybudget.ui.settingsScreen.SettingsFragment"
+        android:name="com.example.familybudget.ui.ui.settingsScreen.SettingsFragment"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/operationsFragment"
+        android:name="com.example.familybudget.ui.ui.operationsScreen.OperationsFragment"
+        android:label="fragment_operations"
+        tools:layout="@layout/fragment_operations" />
 </navigation>

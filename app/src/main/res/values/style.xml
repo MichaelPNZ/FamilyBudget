@@ -1,10 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="StyleButton" parent="Widget.Material3.Button">
+    <style name="StyleButtonNoBackground" parent="Widget.Material3.Button">
+        <item name="android:textAppearance">@style/StyleTitle14Black</item>
         <item name="android:paddingVertical">0dp</item>
         <item name="android:paddingHorizontal">0dp</item>
-        <item name="cornerRadius">8dp</item>
+        <item name="cornerRadius">@dimen/corner_radius_8dp</item>
     </style>
 
+    <style name="StyleButtonGrayBackground" parent="Widget.Material3.Button">
+        <item name="android:textAppearance">@style/StyleTitle16Gray</item>
+        <item name="android:paddingVertical">0dp</item>
+        <item name="android:paddingHorizontal">0dp</item>
+        <item name="cornerRadius">@dimen/corner_radius_8dp</item>
+    </style>
+
+    <style name="StyleTitle12Black" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">12sp</item>
+        <item name="android:fontFamily">@font/roboto_regular</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="StyleTitle12Gray" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">12sp</item>
+        <item name="android:fontFamily">@font/roboto_regular</item>
+        <item name="android:textColor">@color/gray</item>
+    </style>
+
+    <style name="StyleTitle14Black" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">@font/roboto_regular</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="StyleTitle14Gray" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">@font/roboto_regular</item>
+        <item name="android:textColor">@color/gray</item>
+    </style>
+
+    <style name="StyleTitle16Black" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">16sp</item>
+        <item name="android:fontFamily">@font/roboto_regular</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="StyleTitle16Gray" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">16sp</item>
+        <item name="android:fontFamily">@font/roboto_regular</item>
+        <item name="android:textColor">@color/gray</item>
+    </style>
+
+    <style name="StyleTitle16Purple" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">16sp</item>
+        <item name="android:fontFamily">@font/roboto_regular</item>
+        <item name="android:textColor">@color/purple</item>
+    </style>
+
+    <style name="StyleTitle20Purple" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">20sp</item>
+        <item name="android:fontFamily">@font/roboto_medium</item>
+        <item name="android:textColor">@color/purple</item>
+<!--        <item name="android:gravity">center</item>-->
+<!--        <item name="android:paddingHorizontal">10dp</item>-->
+<!--        <item name="android:paddingVertical">10dp</item>-->
+    </style>
+
+    <style name="StyleTitle20Black" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">20sp</item>
+        <item name="android:fontFamily">@font/roboto_medium</item>
+        <item name="android:textColor">@color/black</item>
+        <!--        <item name="android:gravity">center</item>-->
+        <!--        <item name="android:paddingHorizontal">10dp</item>-->
+        <!--        <item name="android:paddingVertical">10dp</item>-->
+    </style>
+
+
+<!--    <style name="StyleSeekBar" parent="Widget.AppCompat.SeekBar">-->
+<!--        <item name="android:thumb">@drawable/shape_seekbar_thumb</item>-->
+<!--        <item name="android:progressDrawable">@drawable/shape_seekbar_progress</item>-->
+<!--    </style>-->
+
+<!--    <style name="StyleHeartButton">-->
+<!--        <item name="android:background">?android:attr/selectableItemBackgroundBorderless</item>-->
+<!--        <item name="android:foreground">?android:attr/selectableItemBackground</item>-->
+<!--    </style>-->
 </resources>

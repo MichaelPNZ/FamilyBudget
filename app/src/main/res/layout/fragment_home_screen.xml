@@ -3,63 +3,51 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingHorizontal="16dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingHorizontal="@dimen/space_main"
+        android:paddingVertical="@dimen/space_main">
 
-        <HorizontalScrollView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:scrollbars="none">
+            android:gravity="center"
+            android:orientation="horizontal">
 
-            <com.google.android.material.chip.ChipGroup
+            <Button
+                style="@style/StyleButtonGrayBackground"
+                android:layout_width="25dp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/white"
+                android:drawableEnd="@drawable/angle_small_left"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                style="@style/StyleTitle16Black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingVertical="8dp"
-                app:singleLine="true"
-                app:singleSelection="true">
+                android:paddingHorizontal="@dimen/space_main_half"
+                android:text="Current month"
+                tools:ignore="HardcodedText" />
 
-                <com.google.android.material.chip.Chip
-                    style="@style/Widget.MaterialComponents.Chip.Action"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Вчера" />
-
-                <com.google.android.material.chip.Chip
-                    style="@style/Widget.MaterialComponents.Chip.Action"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Сегодня" />
-
-                <com.google.android.material.chip.Chip
-                    style="@style/Widget.MaterialComponents.Chip.Action"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Прошлая неделя" />
-
-                <com.google.android.material.chip.Chip
-                    style="@style/Widget.MaterialComponents.Chip.Action"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Эта неделя" />
-
-                <com.google.android.material.chip.Chip
-                    style="@style/Widget.MaterialComponents.Chip.Action"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Этот месяц" />
-
-            </com.google.android.material.chip.ChipGroup>
-        </HorizontalScrollView>
+            <Button
+                style="@style/StyleButtonGrayBackground"
+                android:layout_width="25dp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/white"
+                android:drawableLeft="@drawable/angle_small_right"
+                tools:ignore="ContentDescription" />
+        </LinearLayout>
 
         <View
             android:id="@+id/divider2"
             android:layout_width="match_parent"
-            android:layout_height="1dp"
+            android:layout_height="@dimen/divider_height"
             android:background="?android:attr/listDivider" />
 
         <androidx.recyclerview.widget.RecyclerView
@@ -67,14 +55,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:paddingVertical="8dp"
+            android:paddingVertical="@dimen/space_main_half"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/item_balance" />
 
         <View
             android:id="@+id/divider3"
             android:layout_width="match_parent"
-            android:layout_height="1dp"
+            android:layout_height="@dimen/divider_height"
             android:background="?android:attr/listDivider" />
 
         <androidx.recyclerview.widget.RecyclerView
@@ -82,14 +70,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:paddingVertical="8dp"
+            android:paddingVertical="@dimen/space_main_half"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/item_balance_for_period" />
 
         <View
             android:id="@+id/divider4"
             android:layout_width="match_parent"
-            android:layout_height="1dp"
+            android:layout_height="@dimen/divider_height"
             android:background="?android:attr/listDivider" />
 
         <LinearLayout
@@ -98,49 +86,36 @@
             android:orientation="horizontal">
 
             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingVertical="@dimen/space_main"
+                android:text="Обязательные траты за " />
+
+            <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
                 android:layout_weight="1"
-                android:text="Операции" />
+                android:text="/месяц\"
+                tools:ignore="HardcodedText" />
 
-            <com.google.android.material.chip.ChipGroup
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-                <com.google.android.material.chip.Chip
-                    style="@style/Widget.MaterialComponents.Chip.Action"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Запреплённые"
-                    app:chipIcon="@drawable/pin" />
-
-                <com.google.android.material.chip.Chip
-                    style="@style/Widget.MaterialComponents.Chip.Action"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Недавние" />
-
-            </com.google.android.material.chip.ChipGroup>
-
+            <Button
+                style="@style/StyleButtonGrayBackground"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center"
+                android:backgroundTint="@color/grayBackground"
+                android:text="@string/plus"
+                android:textColor="@color/black" />
         </LinearLayout>
 
-        <View
-            android:id="@+id/divider5"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="?android:attr/listDivider" />
-
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvOperations"
+            android:id="@+id/rvMandatoryExpenses"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingVertical="8dp"
-            android:paddingHorizontal="8dp"
+            android:paddingVertical="@dimen/space_main_half"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:itemCount="2"
-            tools:listitem="@layout/item_operations" />
-
+            tools:itemCount="8"
+            tools:listitem="@layout/item_mandatory_expenses" />
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>

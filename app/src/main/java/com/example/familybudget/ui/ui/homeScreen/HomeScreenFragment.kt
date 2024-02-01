@@ -1,4 +1,4 @@
-package com.example.familybudget.ui.homeScreen
+package com.example.familybudget.ui.ui.homeScreen
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

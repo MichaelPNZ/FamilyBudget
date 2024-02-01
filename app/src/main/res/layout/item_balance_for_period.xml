@@ -8,51 +8,51 @@
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:layout_marginEnd="@dimen/space_main"
         android:layout_weight="1"
-        android:paddingHorizontal="16dp"
-        android:paddingVertical="8dp">
+        android:orientation="vertical"
+        android:paddingVertical="@dimen/space_main_half">
 
         <TextView
+            style="@style/StyleTitle16Black"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Баланс за период"
-            android:gravity="end"/>
+            android:gravity="end"
+            android:text="Баланс за период" />
 
         <TextView
+            style="@style/StyleTitle20Purple"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="4444444"
-            android:textSize="20sp"
-            android:gravity="end"/>
+            android:gravity="end"
+            android:text="4444444" />
     </LinearLayout>
 
     <View
         android:id="@+id/divider"
-        android:layout_width="1dp"
+        android:layout_width="@dimen/divider_height"
         android:layout_height="match_parent"
         android:background="?android:attr/listDivider" />
 
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:layout_weight="1"
-        android:paddingHorizontal="16dp"
-        android:paddingVertical="8dp">
+        android:orientation="vertical"
+        android:paddingVertical="@dimen/space_main_half">
 
         <TextView
+            style="@style/StyleTitle16Black"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Остаток на 30.11.2023"
-            android:gravity="end"/>
+            android:gravity="end"
+            android:text="Остаток на 30.11.2023" />
 
         <TextView
+            style="@style/StyleTitle20Purple"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="4444444"
-            android:textSize="20sp"
-            android:gravity="end"/>
+            android:gravity="end"
+            android:text="4444444" />
     </LinearLayout>
-
 </LinearLayout>

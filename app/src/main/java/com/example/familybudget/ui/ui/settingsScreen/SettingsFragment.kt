@@ -1,23 +1,23 @@
-package com.example.familybudget.ui.assetsScreen
+package com.example.familybudget.ui.ui.settingsScreen
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.familybudget.databinding.FragmentAssetsBinding
+import com.example.familybudget.databinding.FragmentSettingsBinding
 
-class AssetsFragment : Fragment() {
+class SettingsFragment : Fragment() {
 
     private val binding by lazy {
-        FragmentAssetsBinding.inflate(layoutInflater)
+        FragmentSettingsBinding.inflate(layoutInflater)
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
+        inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         return binding.root
     }
+
 }
