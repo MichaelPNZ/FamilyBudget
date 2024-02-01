@@ -4,11 +4,11 @@
     <item
         android:id="@+id/homeScreenFragment"
         android:icon="@drawable/home_icon"
-        android:title="@string/home" />
+        android:title="@string/home"/>
     <item
-        android:id="@+id/assetsFragment"
-        android:icon="@drawable/assets_icon"
-        android:title="@string/assets" />
+        android:id="@+id/operationsFragment"
+        android:icon="@drawable/operations_icon"
+        android:title="@string/operations" />
     <item
         android:id="@+id/analyticsFragment"
         android:icon="@drawable/analytics_icon"

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/cvBalanceForPeriod"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/space_main"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:paddingVertical="@dimen/space_main_half">
+
+        <TextView
+            style="@style/StyleTitle16Black"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:text="Баланс за период" />
+
+        <TextView
+            style="@style/StyleTitle20Purple"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:text="4444444" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="@dimen/divider_height"
+        android:layout_height="match_parent"
+        android:background="?android:attr/listDivider" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:paddingVertical="@dimen/space_main_half">
+
+        <TextView
+            style="@style/StyleTitle16Black"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:text="Остаток на 30.11.2023" />
+
+        <TextView
+            style="@style/StyleTitle20Purple"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:text="4444444" />
+    </LinearLayout>
+</LinearLayout>

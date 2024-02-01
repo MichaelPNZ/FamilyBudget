@@ -1,4 +1,4 @@
-package com.example.familybudget.ui
+package com.example.familybudget.ui.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
