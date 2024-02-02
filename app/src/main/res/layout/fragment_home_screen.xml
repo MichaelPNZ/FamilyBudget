@@ -13,39 +13,26 @@
         android:paddingHorizontal="@dimen/space_main"
         android:paddingVertical="@dimen/space_main">
 
-        <LinearLayout
+        <com.google.android.material.tabs.TabLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:background="@color/white">
 
-            <Button
-                style="@style/StyleButtonGrayBackground"
-                android:id="@+id/btnAngleSmallLeft"
-                android:layout_width="25dp"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/white"
-                android:drawableEnd="@drawable/angle_small_left"
-                tools:ignore="ContentDescription" />
-
-            <TextView
-                style="@style/StyleTitle16Black"
-                android:id="@+id/tvCurrentMonth"
+            <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingHorizontal="@dimen/space_main_half"
-                android:text="Current month"
-                tools:ignore="HardcodedText" />
+                android:text="Текущий месяц" />
 
-            <Button
-                style="@style/StyleButtonGrayBackground"
-                android:id="@+id/btnAngleSmallRight"
-                android:layout_width="25dp"
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/white"
-                android:drawableLeft="@drawable/angle_small_right"
-                tools:ignore="ContentDescription" />
-        </LinearLayout>
+                android:text="Текущий год" />
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Все время" />
+        </com.google.android.material.tabs.TabLayout>
 
         <View
             android:layout_width="match_parent"
@@ -70,7 +57,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="end"
-                    android:text="Доходы" />
+                    android:text="@string/income" />
 
                 <TextView
                     android:id="@+id/tvCurrentIncome"
@@ -98,7 +85,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="end"
-                    android:text="Расходы" />
+                    android:text="@string/expenses" />
 
                 <TextView
                     android:id="@+id/tvCurrentExpenses"
@@ -133,7 +120,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="end"
-                    android:text="Баланс за период" />
+                    android:text="@string/balance_for_the_period" />
 
                 <TextView
                     android:id="@+id/tvBalanceForPeriod"
@@ -157,6 +144,7 @@
                 android:paddingVertical="@dimen/space_main_half">
 
                 <TextView
+                    android:id="@+id/tvRemains"
                     style="@style/StyleTitle16Black"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -164,7 +152,7 @@
                     android:text="Остаток на 30.11.2023" />
 
                 <TextView
-                    android:id="@+id/tvRemains"
+                    android:id="@+id/tvRemainsAmount"
                     style="@style/StyleTitle20Purple"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -187,15 +175,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingVertical="@dimen/space_main"
-                android:text="Обязательные траты за " />
+                android:text="@string/mandatory_expenses" />
 
             <TextView
                 android:id="@+id/tvMonth"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="/месяц\"
-                tools:ignore="HardcodedText" />
+                android:text="/месяц\"/>
 
             <Button
                 android:id="@+id/btnAddMandatoryPayments"
@@ -207,6 +194,16 @@
                 android:text="@string/plus"
                 android:textColor="@color/black" />
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvNoMandatoryExpenses"
+            style="@style/StyleTitle16Gray"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_main"
+            android:gravity="center"
+            android:text="@string/no_mandatory_expenses"
+            android:visibility="gone" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvMandatoryExpenses"
