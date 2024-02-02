@@ -14,14 +14,16 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:id="@+id/ivMandatoryPayments"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:layout_gravity="center"
             android:layout_marginStart="@dimen/space_main_half"
-            android:background="@color/gray"
             tools:ignore="ContentDescription" />
 
         <TextView
+            android:id="@+id/tvMandatoryPayments"
+            style="@style/StyleTitle16Black"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/space_main_half"
@@ -29,8 +31,18 @@
             android:paddingVertical="@dimen/space_main_half"
             android:text="название платежа" />
 
+        <TextView
+            android:id="@+id/tvMandatoryPaymentsAmount"
+            style="@style/StyleTitle16Black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/space_main_half"
+            android:paddingVertical="@dimen/space_main_half"
+            android:text="7500" />
+
         <CheckBox
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:clickable="false"/>
     </LinearLayout>
 </androidx.cardview.widget.CardView>

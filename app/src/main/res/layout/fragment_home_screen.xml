@@ -21,6 +21,7 @@
 
             <Button
                 style="@style/StyleButtonGrayBackground"
+                android:id="@+id/btnAngleSmallLeft"
                 android:layout_width="25dp"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/white"
@@ -29,6 +30,7 @@
 
             <TextView
                 style="@style/StyleTitle16Black"
+                android:id="@+id/tvCurrentMonth"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingHorizontal="@dimen/space_main_half"
@@ -37,6 +39,7 @@
 
             <Button
                 style="@style/StyleButtonGrayBackground"
+                android:id="@+id/btnAngleSmallRight"
                 android:layout_width="25dp"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/white"
@@ -45,37 +48,132 @@
         </LinearLayout>
 
         <View
-            android:id="@+id/divider2"
             android:layout_width="match_parent"
             android:layout_height="@dimen/divider_height"
             android:background="?android:attr/listDivider" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvBalance"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingVertical="@dimen/space_main_half"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/item_balance" />
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/space_main"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:paddingVertical="@dimen/space_main_half">
+
+                <TextView
+                    style="@style/StyleTitle16Black"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:text="Доходы" />
+
+                <TextView
+                    android:id="@+id/tvCurrentIncome"
+                    style="@style/StyleTitle20Purple"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:text="66666666" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="@dimen/divider_height"
+                android:layout_height="match_parent"
+                android:background="?android:attr/listDivider" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:paddingVertical="@dimen/space_main_half">
+
+                <TextView
+                    style="@style/StyleTitle16Black"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:text="Расходы" />
+
+                <TextView
+                    android:id="@+id/tvCurrentExpenses"
+                    style="@style/StyleTitle20Black"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:text="66666666" />
+            </LinearLayout>
+        </LinearLayout>
 
         <View
-            android:id="@+id/divider3"
             android:layout_width="match_parent"
             android:layout_height="@dimen/divider_height"
             android:background="?android:attr/listDivider" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvBalanceForPeriod"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingVertical="@dimen/space_main_half"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/item_balance_for_period" />
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/space_main"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:paddingVertical="@dimen/space_main_half">
+
+                <TextView
+                    style="@style/StyleTitle16Black"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:text="Баланс за период" />
+
+                <TextView
+                    android:id="@+id/tvBalanceForPeriod"
+                    style="@style/StyleTitle20Purple"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:text="4444444" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="@dimen/divider_height"
+                android:layout_height="match_parent"
+                android:background="?android:attr/listDivider" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:paddingVertical="@dimen/space_main_half">
+
+                <TextView
+                    style="@style/StyleTitle16Black"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:text="Остаток на 30.11.2023" />
+
+                <TextView
+                    android:id="@+id/tvRemains"
+                    style="@style/StyleTitle20Purple"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:text="4444444" />
+            </LinearLayout>
+        </LinearLayout>
 
         <View
-            android:id="@+id/divider4"
             android:layout_width="match_parent"
             android:layout_height="@dimen/divider_height"
             android:background="?android:attr/listDivider" />
@@ -92,6 +190,7 @@
                 android:text="Обязательные траты за " />
 
             <TextView
+                android:id="@+id/tvMonth"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -99,6 +198,7 @@
                 tools:ignore="HardcodedText" />
 
             <Button
+                android:id="@+id/btnAddMandatoryPayments"
                 style="@style/StyleButtonGrayBackground"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
