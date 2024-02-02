@@ -21,6 +21,7 @@
             android:text="Доходы" />
 
         <TextView
+            android:id="@+id/tvCurrentIncome"
             style="@style/StyleTitle20Purple"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -49,6 +50,7 @@
             android:text="Расходы" />
 
         <TextView
+            android:id="@+id/tvCurrentExpenses"
             style="@style/StyleTitle20Black"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

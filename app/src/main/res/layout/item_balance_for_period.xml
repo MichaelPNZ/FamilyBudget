@@ -21,6 +21,7 @@
             android:text="Баланс за период" />
 
         <TextView
+            android:id="@+id/tvBalanceForPeriod"
             style="@style/StyleTitle20Purple"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -49,6 +50,7 @@
             android:text="Остаток на 30.11.2023" />
 
         <TextView
+            android:id="@+id/tvRemains"
             style="@style/StyleTitle20Purple"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
