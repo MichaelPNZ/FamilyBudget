@@ -6,4 +6,23 @@
     <string name="analytics">Аналитика</string>
     <string name="settings">Настройки</string>
     <string name="plus">+</string>
+    <string name="no_mandatory_expenses">У вас не добавлены обязательные траты</string>
+    <string name="income">Доходы</string>
+    <string name="expenses">Расходы</string>
+    <string name="balance_for_the_period">Баланс за период</string>
+    <string name="mandatory_expenses">Обязательные траты за</string>
+    <string name="zero">0</string>
+    <string name="category">Категория</string>
+    <string name="add">Добавить</string>
+    <string name="add_payment">Добавьте платеж</string>
+    <string-array name="icon_array">
+        <item>Банк</item>
+        <item>Подписки</item>
+        <item>Спорт</item>
+        <item>Дом</item>
+        <item>Детский сад</item>
+        <item>Телефон</item>
+        <item>Школа</item>
+        <item>Магазин</item>
+    </string-array>
 </resources>

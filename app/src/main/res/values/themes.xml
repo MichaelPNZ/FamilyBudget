@@ -4,7 +4,6 @@
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
         <item name="android:windowSplashScreenBackground" tools:targetApi="s">@color/white</item>
-<!--        <item name="android:windowSplashScreenAnimatedIcon" tools:targetApi="s">@drawable/splash_screen_logo</item>-->
         <item name="android:statusBarColor">@color/white</item>
         <item name="android:windowLightStatusBar">true</item>
     </style>
