@@ -44,6 +44,7 @@ class HomeScreenFragment : Fragment(), AddMandatoryPaymentsBottomSheet.OnSaveCli
                 tvCurrentIncome.text = state.wallet?.monthlyIncome.toString()
                 tvCurrentExpenses.text = state.wallet?.monthlyExpenses.toString()
                 tvBalanceForPeriod.text = state.balance
+                tvMonth.text = state.wallet?.currentMonth
                 tvRemains.text = "Остаток на ${state.wallet?.currentMonth}"
                 tvRemainsAmount.text = state.balance
 
