@@ -16,6 +16,10 @@
             android:defaultValue="0" />
         <action
             android:id="@+id/action_homeScreenFragment_to_walletListFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popExitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_enter_anim"
             app:destination="@id/walletListFragment" />
     </fragment>
     <fragment
@@ -40,6 +44,10 @@
         tools:layout="@layout/fragment_wallet_list" >
         <action
             android:id="@+id/action_walletListFragment_to_homeScreenFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popExitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_enter_anim"
             app:destination="@id/homeScreenFragment" >
             <argument
                 android:name="walletId"
