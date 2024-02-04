@@ -12,7 +12,10 @@
         tools:layout="@layout/fragment_home_screen" >
         <argument
             android:name="walletId"
-            app:argType="integer" />
+            app:argType="integer"/>
+        <action
+            android:id="@+id/action_homeScreenFragment_to_walletListFragment"
+            app:destination="@id/walletListFragment" />
     </fragment>
     <fragment
         android:id="@+id/analyticsFragment"
@@ -29,4 +32,16 @@
         android:name="com.example.familybudget.ui.ui.operationsScreen.OperationsFragment"
         android:label="fragment_operations"
         tools:layout="@layout/fragment_operations" />
+    <fragment
+        android:id="@+id/walletListFragment"
+        android:name="com.example.familybudget.ui.ui.walletList.WalletListFragment"
+        android:label="fragment_wallet_list"
+        tools:layout="@layout/fragment_wallet_list" >
+        <action
+            android:id="@+id/action_walletListFragment_to_homeScreenFragment"
+            app:destination="@id/homeScreenFragment" />
+        <argument
+            android:name="currentWalletId"
+            app:argType="integer" />
+    </fragment>
 </navigation>

@@ -5,7 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.familybudget.databinding.FragmentHomeScreenBinding
 
@@ -17,6 +19,7 @@ class HomeScreenFragment : Fragment(), AddMandatoryPaymentsBottomSheet.OnSaveCli
     private val homeScreenFragmentArgs: HomeScreenFragmentArgs by navArgs()
     private val viewModel: HomeScreenViewModel by viewModels()
     private val mandatoryPaymentsAdapter = MandatoryPaymentsAdapter(this)
+    private val defaultWallet = 0
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -50,14 +53,29 @@ class HomeScreenFragment : Fragment(), AddMandatoryPaymentsBottomSheet.OnSaveCli
 
                 if (state.wallet?.mandatoryPayments == null) {
                     tvNoMandatoryExpenses.visibility = View.VISIBLE
-                }
-                else {
+                } else {
                     tvNoMandatoryExpenses.visibility = View.GONE
                     mandatoryPaymentsAdapter.submitList(state.wallet!!.mandatoryPayments.reversed())
                 }
+
+                btnWalletSelection.setOnClickListener {
+                    state.wallet?.id?.let { it1 -> openWalletList(it1) }
+                }
+
+                btnActionMenu.setOnClickListener {
+                    // Handle action menu button click
+                    // For example, open the action menu
+                    Toast.makeText(context, "Action Menu clicked", Toast.LENGTH_SHORT).show()
+                }
             }
         }
-        viewModel.loadWallet(0)
+        viewModel.loadWallet(defaultWallet)
+    }
+
+    private fun openWalletList(currentWalletId: Int) {
+        findNavController().navigate(
+            HomeScreenFragmentDirections.actionHomeScreenFragmentToWalletListFragment(currentWalletId)
+        )
     }
 
     override fun onSaveClicked(amount: String, selectedIcon: CharSequence) {

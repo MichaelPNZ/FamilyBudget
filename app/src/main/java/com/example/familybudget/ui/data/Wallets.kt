@@ -12,6 +12,8 @@ object STUB {
         if (walletId == wallets[walletId].id) wallets[walletId]
         else null
 
+    fun getAllWallets(): List<Wallet> = wallets
+
     fun getOperations(walletId: Int): List<Operation>? =
         wallets.find { it.id == walletId }?.operations
 
@@ -39,9 +41,101 @@ object STUB {
     private val wallets = listOf(
         Wallet(
             id = 0,
+            "Семейный бюджет",
             currentMonth = current.month.name,
             monthlyIncome = 30000,
             monthlyExpenses = 12000,
+            operations = listOf(
+                Operation(
+                    0,
+                    current.toString(),
+                    "store.png",
+                    "Покупка в магазине",
+                    "Цитрон",
+                    555,
+                ),
+                Operation(
+                    1,
+                    current.toString(),
+                    "store.png",
+                    "Покупка в магазине",
+                    "Хоббиты",
+                    1300,
+                ),
+                Operation(
+                    2,
+                    current.toString(),
+                    "store.png",
+                    "Покупка в магазине",
+                    "Магнит",
+                    2654,
+                )
+            ),
+            mandatoryPayments = listOf(
+                MandatoryPayment(
+                    0,
+                    "home.png",
+                    "Квартплата",
+                    7500,
+                    false
+                ),
+                MandatoryPayment(
+                    1,
+                    "phone.png",
+                    "Сотовая связь",
+                    2000,
+                    false
+                ),
+                MandatoryPayment(
+                    2,
+                    "gym.png",
+                    "Спорт зал",
+                    5500,
+                    false
+                ),
+                MandatoryPayment(
+                    3,
+                    "bank.png",
+                    "Кредит",
+                    9000,
+                    false
+                ),
+                MandatoryPayment(
+                    4,
+                    "dollar.png",
+                    "Подписки",
+                    800,
+                    false
+                ),
+                MandatoryPayment(
+                    5,
+                    "school.png",
+                    "Школа",
+                    3200,
+                    false
+                ),
+                MandatoryPayment(
+                    6,
+                    "kindergarten.png",
+                    "Детский сад",
+                    2000,
+                    false
+                ),
+                MandatoryPayment(
+                    7,
+                    "dollar.png",
+                    "Налог",
+                    8000,
+                    false
+                )
+            )
+        ),
+        Wallet(
+            id = 1,
+            "Ntcn бюджет",
+            currentMonth = current.month.name,
+            monthlyIncome = 7777770,
+            monthlyExpenses = 6222000,
             operations = listOf(
                 Operation(
                     0,

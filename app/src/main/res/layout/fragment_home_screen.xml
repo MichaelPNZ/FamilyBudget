@@ -1,10 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:background="@color/white">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/lightGray"
+        app:layout_collapseMode="pin">
+
+        <Button
+            android:id="@+id/btnWalletSelection"
+            style="@style/StyleButtonGrayBackground"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/lightGray"
+            android:drawableLeft="@drawable/credit_card"
+            android:text="DCDcsdsv"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/btnActionMenu"
+            style="@style/StyleButtonGrayBackground"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/lightGray"
+            android:drawableEnd="@drawable/menu_dots_icon"
+            android:layout_gravity="end"
+            android:layout_marginEnd="@dimen/space_main"/>
+
+    </com.google.android.material.appbar.MaterialToolbar>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,7 +46,7 @@
 
         <com.google.android.material.tabs.TabLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:background="@color/white">
 
             <com.google.android.material.tabs.TabItem
@@ -215,4 +246,4 @@
             tools:itemCount="8"
             tools:listitem="@layout/item_mandatory_expenses" />
     </LinearLayout>
-</androidx.core.widget.NestedScrollView>
+</LinearLayout>

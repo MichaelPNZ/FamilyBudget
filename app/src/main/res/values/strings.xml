@@ -15,6 +15,8 @@
     <string name="category">Категория</string>
     <string name="add">Добавить</string>
     <string name="add_payment">Добавьте платеж</string>
+    <string name="wallets">Счета</string>
+    <string name="not_wallet">У вас пока нет счетов</string>
     <string-array name="icon_array">
         <item>Банк</item>
         <item>Подписки</item>
