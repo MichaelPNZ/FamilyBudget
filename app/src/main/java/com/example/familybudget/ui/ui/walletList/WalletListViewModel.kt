@@ -26,5 +26,4 @@ class WalletListViewModel(application: Application): AndroidViewModel(applicatio
         val currentId: Int? = null,
         val listWallet: List<Wallet>? = null,
     )
-
 }

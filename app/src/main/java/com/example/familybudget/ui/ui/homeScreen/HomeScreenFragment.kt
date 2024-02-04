@@ -19,7 +19,6 @@ class HomeScreenFragment : Fragment(), AddMandatoryPaymentsBottomSheet.OnSaveCli
     private val homeScreenFragmentArgs: HomeScreenFragmentArgs by navArgs()
     private val viewModel: HomeScreenViewModel by viewModels()
     private val mandatoryPaymentsAdapter = MandatoryPaymentsAdapter(this)
-    private val defaultWallet = 0
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -55,41 +54,31 @@ class HomeScreenFragment : Fragment(), AddMandatoryPaymentsBottomSheet.OnSaveCli
                     tvNoMandatoryExpenses.visibility = View.VISIBLE
                 } else {
                     tvNoMandatoryExpenses.visibility = View.GONE
-                    mandatoryPaymentsAdapter.submitList(state.wallet!!.mandatoryPayments.reversed())
+                    mandatoryPaymentsAdapter.submitList(state.wallet!!.mandatoryPayments)
                 }
 
+                btnWalletSelection.text = state.wallet?.name
                 btnWalletSelection.setOnClickListener {
                     state.wallet?.id?.let { it1 -> openWalletList(it1) }
                 }
 
                 btnActionMenu.setOnClickListener {
-                    // Handle action menu button click
-                    // For example, open the action menu
                     Toast.makeText(context, "Action Menu clicked", Toast.LENGTH_SHORT).show()
                 }
             }
         }
-        viewModel.loadWallet(defaultWallet)
+        viewModel.loadWallet(homeScreenFragmentArgs.walletId)
     }
 
     private fun openWalletList(currentWalletId: Int) {
         findNavController().navigate(
-            HomeScreenFragmentDirections.actionHomeScreenFragmentToWalletListFragment(currentWalletId)
+            HomeScreenFragmentDirections.actionHomeScreenFragmentToWalletListFragment(
+                currentWalletId
+            )
         )
     }
 
     override fun onSaveClicked(amount: String, selectedIcon: CharSequence) {
-        val category = when(selectedIcon) {
-            "Банк" -> "bank"
-            "Подписки"-> "dollar"
-            "Спорт"-> "gym"
-            "Дом"-> "home"
-            "Детский сад"-> "kindergarten"
-            "Телефон"-> "phone"
-            "Школа"-> "shcool"
-            "Магазин"-> "store"
-            else -> {"error"}
-        }
-        viewModel.onMandatoryPaymentsClicked(amount, category)
+        viewModel.onMandatoryPaymentsClicked(amount, selectedIcon)
     }
 }

@@ -12,16 +12,16 @@ import com.example.familybudget.R
 import com.example.familybudget.ui.model.Wallet
 
 class WalletListAdapter : ListAdapter<Wallet, WalletListAdapter.ViewHolder>(
-        object : DiffUtil.ItemCallback<Wallet>() {
-            override fun areItemsTheSame(oldItem: Wallet, newItem: Wallet): Boolean {
-                return oldItem.id == newItem.id
-            }
-
-            override fun areContentsTheSame(oldItem: Wallet, newItem: Wallet): Boolean {
-                return oldItem == newItem
-            }
+    object : DiffUtil.ItemCallback<Wallet>() {
+        override fun areItemsTheSame(oldItem: Wallet, newItem: Wallet): Boolean {
+            return oldItem.id == newItem.id
         }
-    ) {
+
+        override fun areContentsTheSame(oldItem: Wallet, newItem: Wallet): Boolean {
+            return oldItem == newItem
+        }
+    }
+) {
 
     private var itemClickListener: OnItemClickListener? = null
 
@@ -56,6 +56,4 @@ class WalletListAdapter : ListAdapter<Wallet, WalletListAdapter.ViewHolder>(
             }
         }
     }
-
-
 }

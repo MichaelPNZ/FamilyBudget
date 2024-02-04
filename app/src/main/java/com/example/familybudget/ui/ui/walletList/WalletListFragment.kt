@@ -41,7 +41,6 @@ class WalletListFragment : Fragment() {
 
         viewModel.walletListUIState.observe(viewLifecycleOwner) { state ->
             with(binding) {
-
                 if (state.listWallet == null) {
                     tvNotWallet.visibility = View.VISIBLE
                 } else {
@@ -54,7 +53,6 @@ class WalletListFragment : Fragment() {
                 }
 
                 btnActionMenu.setOnClickListener {
-
                 }
             }
         }
@@ -66,5 +64,4 @@ class WalletListFragment : Fragment() {
             WalletListFragmentDirections.actionWalletListFragmentToHomeScreenFragment(walletId)
         )
     }
-
 }

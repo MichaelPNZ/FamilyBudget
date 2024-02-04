@@ -8,30 +8,43 @@ import com.example.familybudget.ui.data.STUB
 import com.example.familybudget.ui.model.MandatoryPayment
 import com.example.familybudget.ui.model.Wallet
 
-class HomeScreenViewModel(application: Application): AndroidViewModel(application) {
+class HomeScreenViewModel(application: Application) : AndroidViewModel(application) {
 
     private val _homeScreenUIState = MutableLiveData<HomeScreenUIState>()
     val homeScreenUIState: LiveData<HomeScreenUIState>
         get() = _homeScreenUIState
 
     fun loadWallet(walletId: Int) {
-            val wallet = STUB.getWallet(walletId)
-            val balance = STUB.getBalance(walletId)
+        val wallet = STUB.getWallet(walletId)
+        val balance = STUB.getBalance(walletId)
 
-            _homeScreenUIState.value = HomeScreenUIState(
-                wallet = wallet,
-                balance = balance
-            )
+        _homeScreenUIState.value = HomeScreenUIState(
+            wallet = wallet,
+            balance = balance
+        )
     }
 
     fun onMandatoryPaymentsClicked(amount: String, selectedIcon: CharSequence) {
+        val category = when (selectedIcon) {
+            "Банк" -> "bank"
+            "Подписки" -> "dollar"
+            "Спорт" -> "gym"
+            "Дом" -> "home"
+            "Детский сад" -> "kindergarten"
+            "Телефон" -> "phone"
+            "Школа" -> "shcool"
+            "Магазин" -> "store"
+            else -> {
+                "error"
+            }
+        }
         val currentHomeScreenUIState = _homeScreenUIState.value ?: return
         val wallet = currentHomeScreenUIState.wallet ?: return
         val lastId = wallet.mandatoryPayments.last().id
         val mandatoryPayments = wallet.mandatoryPayments.plus(
             MandatoryPayment(
                 lastId + 1,
-                "$selectedIcon.png",
+                "$category.png",
                 selectedIcon.toString(),
                 amount.toInt()
             )
@@ -46,5 +59,4 @@ class HomeScreenViewModel(application: Application): AndroidViewModel(applicatio
         var wallet: Wallet? = null,
         val balance: String? = null,
     )
-
 }

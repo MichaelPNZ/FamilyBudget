@@ -48,7 +48,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="@string/not_wallet"
-        android:visibility="gone"/>
+        android:visibility="gone" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvWallets"

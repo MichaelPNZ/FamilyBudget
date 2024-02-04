@@ -3,8 +3,9 @@ package com.example.familybudget.ui.data
 import com.example.familybudget.ui.model.MandatoryPayment
 import com.example.familybudget.ui.model.Operation
 import com.example.familybudget.ui.model.Wallet
-import java.time.LocalDateTime
+import java.text.SimpleDateFormat
 import java.util.Calendar
+import java.util.Locale
 
 object STUB {
 
@@ -28,27 +29,28 @@ object STUB {
         return balance.toString()
     }
 
-    private val calendar = Calendar.getInstance()
-    private val current = LocalDateTime.of(
-        calendar.get(Calendar.YEAR),
-        calendar.get(Calendar.MONTH),
-        calendar.get(Calendar.DAY_OF_MONTH),
-        calendar.get(Calendar.HOUR_OF_DAY),
-        calendar.get(Calendar.MINUTE),
-        calendar.get(Calendar.SECOND)
-    )
+    fun getCurrentMonth(): String {
+        val currentDate = Calendar.getInstance().time
+
+        val monthFormat = SimpleDateFormat("LLLL", Locale("ru"))
+        return monthFormat.format(currentDate)
+    }
+
+    private val currentDate  = Calendar.getInstance().time
+    private val dateFormat = SimpleDateFormat("dd MMMM yyyy", Locale("ru"))
+    val formattedDate = dateFormat.format(currentDate)
 
     private val wallets = listOf(
         Wallet(
             id = 0,
             "Семейный бюджет",
-            currentMonth = current.month.name,
+            currentMonth = getCurrentMonth(),
             monthlyIncome = 30000,
             monthlyExpenses = 12000,
             operations = listOf(
                 Operation(
                     0,
-                    current.toString(),
+                    formattedDate,
                     "store.png",
                     "Покупка в магазине",
                     "Цитрон",
@@ -56,7 +58,7 @@ object STUB {
                 ),
                 Operation(
                     1,
-                    current.toString(),
+                    formattedDate,
                     "store.png",
                     "Покупка в магазине",
                     "Хоббиты",
@@ -64,7 +66,7 @@ object STUB {
                 ),
                 Operation(
                     2,
-                    current.toString(),
+                    formattedDate,
                     "store.png",
                     "Покупка в магазине",
                     "Магнит",
@@ -133,13 +135,13 @@ object STUB {
         Wallet(
             id = 1,
             "Ntcn бюджет",
-            currentMonth = current.month.name,
+            currentMonth = getCurrentMonth(),
             monthlyIncome = 7777770,
             monthlyExpenses = 6222000,
             operations = listOf(
                 Operation(
                     0,
-                    current.toString(),
+                    formattedDate,
                     "store.png",
                     "Покупка в магазине",
                     "Цитрон",
@@ -147,7 +149,7 @@ object STUB {
                 ),
                 Operation(
                     1,
-                    current.toString(),
+                    formattedDate,
                     "store.png",
                     "Покупка в магазине",
                     "Хоббиты",
@@ -155,7 +157,7 @@ object STUB {
                 ),
                 Operation(
                     2,
-                    current.toString(),
+                    formattedDate,
                     "store.png",
                     "Покупка в магазине",
                     "Магнит",

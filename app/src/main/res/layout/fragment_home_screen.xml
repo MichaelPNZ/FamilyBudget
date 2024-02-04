@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/white">
+    android:background="@color/white"
+    android:orientation="vertical">
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolbar"
@@ -20,8 +20,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/lightGray"
-            android:drawableLeft="@drawable/credit_card"
-            android:text="DCDcsdsv"
+            android:drawableLeft="@drawable/wallet_icon"
             android:textColor="@color/black"
             android:textSize="20sp" />
 
@@ -30,10 +29,10 @@
             style="@style/StyleButtonGrayBackground"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/lightGray"
-            android:drawableEnd="@drawable/menu_dots_icon"
             android:layout_gravity="end"
-            android:layout_marginEnd="@dimen/space_main"/>
+            android:layout_marginEnd="@dimen/space_main"
+            android:backgroundTint="@color/lightGray"
+            android:drawableEnd="@drawable/menu_dots_icon" />
 
     </com.google.android.material.appbar.MaterialToolbar>
 
@@ -52,17 +51,17 @@
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Текущий месяц" />
+                android:text="@string/current_year" />
 
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Текущий год" />
+                android:text="@string/current_month" />
 
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Все время" />
+                android:text="@string/all_time" />
         </com.google.android.material.tabs.TabLayout>
 
         <View
@@ -95,8 +94,7 @@
                     style="@style/StyleTitle20Purple"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="end"
-                    android:text="66666666" />
+                    android:gravity="end" />
             </LinearLayout>
 
             <View
@@ -123,8 +121,7 @@
                     style="@style/StyleTitle20Black"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="end"
-                    android:text="66666666" />
+                    android:gravity="end" />
             </LinearLayout>
         </LinearLayout>
 
@@ -158,8 +155,7 @@
                     style="@style/StyleTitle20Purple"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="end"
-                    android:text="4444444" />
+                    android:gravity="end" />
             </LinearLayout>
 
             <View
@@ -179,16 +175,14 @@
                     style="@style/StyleTitle16Black"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="end"
-                    android:text="Остаток на 30.11.2023" />
+                    android:gravity="end" />
 
                 <TextView
                     android:id="@+id/tvRemainsAmount"
                     style="@style/StyleTitle20Purple"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="end"
-                    android:text="4444444" />
+                    android:gravity="end" />
             </LinearLayout>
         </LinearLayout>
 
@@ -212,8 +206,8 @@
                 android:id="@+id/tvMonth"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginHorizontal="@dimen/space_main_half"/>
+                android:layout_marginHorizontal="@dimen/space_main_half"
+                android:layout_weight="1" />
 
             <Button
                 android:id="@+id/btnAddMandatoryPayments"
@@ -243,6 +237,8 @@
             android:orientation="vertical"
             android:paddingVertical="@dimen/space_main_half"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:reverseLayout="true"
+            app:stackFromEnd="true"
             tools:itemCount="8"
             tools:listitem="@layout/item_mandatory_expenses" />
     </LinearLayout>

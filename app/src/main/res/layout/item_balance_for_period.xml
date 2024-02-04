@@ -18,15 +18,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="end"
-            android:text="Баланс за период" />
+            android:text="@string/balance_for_the_period" />
 
         <TextView
             android:id="@+id/tvBalanceForPeriod"
             style="@style/StyleTitle20Purple"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="end"
-            android:text="4444444" />
+            android:gravity="end" />
     </LinearLayout>
 
     <View
@@ -46,15 +45,13 @@
             style="@style/StyleTitle16Black"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="end"
-            android:text="Остаток на 30.11.2023" />
+            android:gravity="end" />
 
         <TextView
             android:id="@+id/tvRemainsAmount"
             style="@style/StyleTitle20Purple"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="end"
-            android:text="4444444" />
+            android:gravity="end" />
     </LinearLayout>
 </LinearLayout>

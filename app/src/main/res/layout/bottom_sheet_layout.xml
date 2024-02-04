@@ -28,7 +28,7 @@
             style="@style/StyleTitle16Gray"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Сумма" />
+            android:text="@string/sum" />
 
         <EditText
             android:id="@+id/etAmount"
