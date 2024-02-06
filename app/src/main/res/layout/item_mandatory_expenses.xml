@@ -28,8 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/space_main_half"
             android:layout_weight="1"
-            android:paddingVertical="@dimen/space_main_half"
-            android:text="название платежа" />
+            android:paddingVertical="@dimen/space_main_half" />
 
         <TextView
             android:id="@+id/tvMandatoryPaymentsAmount"
@@ -37,13 +36,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/space_main_half"
-            android:paddingVertical="@dimen/space_main_half"
-            android:text="7500" />
+            android:paddingVertical="@dimen/space_main_half" />
 
         <CheckBox
             android:id="@+id/checkBox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:clickable="false"/>
+            android:clickable="false" />
     </LinearLayout>
 </androidx.cardview.widget.CardView>

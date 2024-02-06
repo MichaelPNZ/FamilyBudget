@@ -1,6 +1,8 @@
 package com.example.familybudget.ui.model
 
+import kotlinx.serialization.Serializable
 
+@Serializable
 data class Operation(
     val id: Int,
     val date: String,

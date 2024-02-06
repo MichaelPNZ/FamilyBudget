@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:paddingBottom="@dimen/space_main_half"
-        android:text="@string/add_payment" />
+        android:text="@string/add_wallet" />
 
     <View
         android:layout_width="match_parent"
@@ -28,43 +28,19 @@
             style="@style/StyleTitle16Gray"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Сумма" />
+            android:text="@string/name_wallet" />
 
         <EditText
-            android:id="@+id/etAmount"
+            android:id="@+id/etNewWalletName"
             style="@style/StyleTitle16Black"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:autofillHints="amount"
+            android:labelFor="@id/etNewWalletName"
             android:background="@null"
-            android:digits="0123456789"
             android:gravity="end"
-            android:inputType="number" />
+            android:inputType="textPersonName" />
 
-    </LinearLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/divider_height"
-        android:background="@color/gray" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingVertical="@dimen/space_main">
-
-        <TextView
-            style="@style/StyleTitle16Gray"
-
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/category" />
-
-        <Spinner
-            android:id="@+id/spinner"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
     </LinearLayout>
 
     <View
@@ -73,7 +49,7 @@
         android:background="@color/gray" />
 
     <Button
-        android:id="@+id/btnSave"
+        android:id="@+id/btnSaveWallet"
         style="@style/StyleButtonGrayBackground"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

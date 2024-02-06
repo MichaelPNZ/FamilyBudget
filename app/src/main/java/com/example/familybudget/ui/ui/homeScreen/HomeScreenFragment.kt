@@ -1,12 +1,16 @@
 package com.example.familybudget.ui.ui.homeScreen
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.recyclerview.widget.RecyclerView
 import com.example.familybudget.databinding.FragmentHomeScreenBinding
 
 class HomeScreenFragment : Fragment(), AddMandatoryPaymentsBottomSheet.OnSaveClickListener {
@@ -37,6 +41,7 @@ class HomeScreenFragment : Fragment(), AddMandatoryPaymentsBottomSheet.OnSaveCli
             val bottomSheetFragment = AddMandatoryPaymentsBottomSheet()
             bottomSheetFragment.setOnSaveClickListener(this)
             bottomSheetFragment.show(parentFragmentManager, bottomSheetFragment.tag)
+
         }
 
         viewModel.homeScreenUIState.observe(viewLifecycleOwner) { state ->
@@ -50,28 +55,58 @@ class HomeScreenFragment : Fragment(), AddMandatoryPaymentsBottomSheet.OnSaveCli
 
                 if (state.wallet?.mandatoryPayments == null) {
                     tvNoMandatoryExpenses.visibility = View.VISIBLE
-                }
-                else {
+                } else {
                     tvNoMandatoryExpenses.visibility = View.GONE
-                    mandatoryPaymentsAdapter.submitList(state.wallet!!.mandatoryPayments.reversed())
+                    mandatoryPaymentsAdapter.submitList(state.wallet!!.mandatoryPayments)
+                }
+
+                btnWalletSelection.text = state.wallet?.name
+                btnWalletSelection.setOnClickListener {
+                    state.wallet?.id?.let { it1 -> openWalletList(it1) }
+                }
+
+                btnActionMenu.setOnClickListener {
+                    Toast.makeText(context, "Action Menu clicked", Toast.LENGTH_SHORT).show()
                 }
             }
         }
-        viewModel.loadWallet(0)
+        setupSwipeListener(binding.rvMandatoryExpenses)
+        viewModel.loadWallet(homeScreenFragmentArgs.walletId)
+    }
+
+    private fun setupSwipeListener(rvMandatoryPayments: RecyclerView?) {
+        val itemTouchHelperCallback =
+            object : ItemTouchHelper.SimpleCallback(
+                0,
+                ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
+            ) {
+                override fun onMove(
+                    recyclerView: RecyclerView,
+                    viewHolder: RecyclerView.ViewHolder,
+                    viewHolder2: RecyclerView.ViewHolder
+                ): Boolean {
+                    return false
+                }
+
+                override fun onSwiped(viewHolder: RecyclerView.ViewHolder, swipeDirection: Int) {
+                    val item =
+                        mandatoryPaymentsAdapter.currentList[viewHolder.adapterPosition]
+                    viewModel.deleteMandatoryPayments(item.id)
+                }
+            }
+        val itemTouchHelper = ItemTouchHelper(itemTouchHelperCallback)
+        itemTouchHelper.attachToRecyclerView(rvMandatoryPayments)
+    }
+
+    private fun openWalletList(currentWalletId: Int) {
+        findNavController().navigate(
+            HomeScreenFragmentDirections.actionHomeScreenFragmentToWalletListFragment(
+                currentWalletId
+            )
+        )
     }
 
     override fun onSaveClicked(amount: String, selectedIcon: CharSequence) {
-        val category = when(selectedIcon) {
-            "Банк" -> "bank"
-            "Подписки"-> "dollar"
-            "Спорт"-> "gym"
-            "Дом"-> "home"
-            "Детский сад"-> "kindergarten"
-            "Телефон"-> "phone"
-            "Школа"-> "shcool"
-            "Магазин"-> "store"
-            else -> {"error"}
-        }
-        viewModel.onMandatoryPaymentsClicked(amount, category)
+        viewModel.onMandatoryPaymentsClicked(amount, selectedIcon)
     }
 }

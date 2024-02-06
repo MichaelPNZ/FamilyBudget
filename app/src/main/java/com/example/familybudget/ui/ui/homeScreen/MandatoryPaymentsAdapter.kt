@@ -17,8 +17,8 @@ import com.example.familybudget.R
 import com.example.familybudget.ui.model.MandatoryPayment
 import java.io.InputStream
 
-class MandatoryPaymentsAdapter(private val fragment: Fragment? = null)
-    : ListAdapter<MandatoryPayment, MandatoryPaymentsAdapter.ViewHolder>(
+class MandatoryPaymentsAdapter(private val fragment: Fragment? = null) :
+    ListAdapter<MandatoryPayment, MandatoryPaymentsAdapter.ViewHolder>(
         object : DiffUtil.ItemCallback<MandatoryPayment>() {
             override fun areItemsTheSame(
                 oldItem: MandatoryPayment,
