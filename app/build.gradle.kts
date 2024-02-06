@@ -2,6 +2,7 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("androidx.navigation.safeargs.kotlin")
+    kotlin("plugin.serialization")
     id("com.google.devtools.ksp") version "1.9.0-1.0.13"
 }
 
@@ -50,6 +51,9 @@ dependencies {
     ksp("androidx.room:room-compiler:$room_version")
 
     implementation("androidx.core:core-splashscreen:1.0.1")
+
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.2")
+    implementation("com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:1.0.0")
 
     implementation("androidx.fragment:fragment-ktx:$fragment_version")
     implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")

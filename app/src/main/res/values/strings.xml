@@ -21,6 +21,8 @@
     <string name="current_year">Текущий месяц</string>
     <string name="current_month">Текущий год</string>
     <string name="all_time">Все время</string>
+    <string name="add_wallet">Добавить счет</string>
+    <string name="name_wallet">Название</string>
     <string-array name="icon_array">
         <item>Банк</item>
         <item>Подписки</item>

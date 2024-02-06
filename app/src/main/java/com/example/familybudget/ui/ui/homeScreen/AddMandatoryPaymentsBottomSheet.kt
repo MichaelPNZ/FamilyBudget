@@ -7,13 +7,13 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import com.example.familybudget.R
-import com.example.familybudget.databinding.BottomSheetLayoutBinding
+import com.example.familybudget.databinding.AddMondatoryPaymentsBottomSheetLayoutBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class AddMandatoryPaymentsBottomSheet : BottomSheetDialogFragment() {
 
     private val binding by lazy {
-        BottomSheetLayoutBinding.inflate(layoutInflater)
+        AddMondatoryPaymentsBottomSheetLayoutBinding.inflate(layoutInflater)
     }
     private lateinit var onSaveClickListener: OnSaveClickListener
 

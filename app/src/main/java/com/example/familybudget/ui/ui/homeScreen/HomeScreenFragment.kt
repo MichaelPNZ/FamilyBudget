@@ -1,14 +1,16 @@
 package com.example.familybudget.ui.ui.homeScreen
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.recyclerview.widget.RecyclerView
 import com.example.familybudget.databinding.FragmentHomeScreenBinding
 
 class HomeScreenFragment : Fragment(), AddMandatoryPaymentsBottomSheet.OnSaveClickListener {
@@ -39,6 +41,7 @@ class HomeScreenFragment : Fragment(), AddMandatoryPaymentsBottomSheet.OnSaveCli
             val bottomSheetFragment = AddMandatoryPaymentsBottomSheet()
             bottomSheetFragment.setOnSaveClickListener(this)
             bottomSheetFragment.show(parentFragmentManager, bottomSheetFragment.tag)
+
         }
 
         viewModel.homeScreenUIState.observe(viewLifecycleOwner) { state ->
@@ -67,7 +70,32 @@ class HomeScreenFragment : Fragment(), AddMandatoryPaymentsBottomSheet.OnSaveCli
                 }
             }
         }
+        setupSwipeListener(binding.rvMandatoryExpenses)
         viewModel.loadWallet(homeScreenFragmentArgs.walletId)
+    }
+
+    private fun setupSwipeListener(rvMandatoryPayments: RecyclerView?) {
+        val itemTouchHelperCallback =
+            object : ItemTouchHelper.SimpleCallback(
+                0,
+                ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
+            ) {
+                override fun onMove(
+                    recyclerView: RecyclerView,
+                    viewHolder: RecyclerView.ViewHolder,
+                    viewHolder2: RecyclerView.ViewHolder
+                ): Boolean {
+                    return false
+                }
+
+                override fun onSwiped(viewHolder: RecyclerView.ViewHolder, swipeDirection: Int) {
+                    val item =
+                        mandatoryPaymentsAdapter.currentList[viewHolder.adapterPosition]
+                    viewModel.deleteMandatoryPayments(item.id)
+                }
+            }
+        val itemTouchHelper = ItemTouchHelper(itemTouchHelperCallback)
+        itemTouchHelper.attachToRecyclerView(rvMandatoryPayments)
     }
 
     private fun openWalletList(currentWalletId: Int) {

@@ -32,7 +32,7 @@
             android:text="@string/wallets" />
 
         <Button
-            android:id="@+id/btnActionMenu"
+            android:id="@+id/btnNewWallet"
             style="@style/StyleButtonGrayBackground"
             android:layout_width="40dp"
             android:layout_height="wrap_content"
