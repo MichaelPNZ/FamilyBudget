@@ -53,11 +53,11 @@ class HomeScreenFragment : Fragment(), AddMandatoryPaymentsBottomSheet.OnSaveCli
                 tvRemains.text = "Остаток на ${state.wallet?.currentMonth}"
                 tvRemainsAmount.text = state.balance
 
-                if (state.wallet?.mandatoryPayments == null) {
+                if (state.wallet?.mandatoryPayments?.isEmpty() == true) {
                     tvNoMandatoryExpenses.visibility = View.VISIBLE
                 } else {
                     tvNoMandatoryExpenses.visibility = View.GONE
-                    mandatoryPaymentsAdapter.submitList(state.wallet!!.mandatoryPayments)
+                    mandatoryPaymentsAdapter.submitList(state.wallet?.mandatoryPayments)
                 }
 
                 btnWalletSelection.text = state.wallet?.name

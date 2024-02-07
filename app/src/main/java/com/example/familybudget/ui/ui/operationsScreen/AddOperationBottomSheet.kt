@@ -1,4 +1,4 @@
-package com.example.familybudget.ui.ui.homeScreen
+package com.example.familybudget.ui.ui.operationsScreen
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,14 +7,15 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import com.example.familybudget.R
-import com.example.familybudget.databinding.AddMondatoryPaymentsBottomSheetLayoutBinding
+import com.example.familybudget.databinding.AddOperationBottomSheetLayoutBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
-class AddMandatoryPaymentsBottomSheet : BottomSheetDialogFragment() {
+class AddOperationBottomSheet : BottomSheetDialogFragment() {
 
     private val binding by lazy {
-        AddMondatoryPaymentsBottomSheetLayoutBinding.inflate(layoutInflater)
+        AddOperationBottomSheetLayoutBinding.inflate(layoutInflater)
     }
+
     private lateinit var onSaveClickListener: OnSaveClickListener
 
     fun setOnSaveClickListener(listener: OnSaveClickListener) {
@@ -22,7 +23,7 @@ class AddMandatoryPaymentsBottomSheet : BottomSheetDialogFragment() {
     }
 
     interface OnSaveClickListener {
-        fun onSaveClicked(amount: String, selectedIcon: CharSequence)
+        fun onSaveClicked(amount: String, selectedIcon: CharSequence, place: String)
     }
 
     override fun onCreateView(
@@ -39,20 +40,22 @@ class AddMandatoryPaymentsBottomSheet : BottomSheetDialogFragment() {
         }
         adapter?.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         with(binding) {
-            spinner.adapter = adapter
-            btnSave.setOnClickListener {
-                val amount = etAmount.text.toString()
-                if (amount == "") {
+            spinnerOperationScreen.adapter = adapter
+            btnSaveOperationScreen.setOnClickListener {
+                val amount = etAmountOperationScreen.text.toString()
+                val place = etNameOfPlaceOperationScreen.text.toString()
+                if (amount == "" || place == "") {
                     val toast = Toast.makeText(
                         context,
-                        "Ошибка! Вы не ввели сумму платежа",
+                        "Ошибка! Вы не ввели сумму платежа или название места",
                         Toast.LENGTH_LONG
                     )
                     toast.show()
                 } else {
                     onSaveClickListener.onSaveClicked(
                         amount,
-                        spinner.selectedItem.toString()
+                        spinnerOperationScreen.selectedItem.toString(),
+                        place
                     )
                 }
                 dismiss()
