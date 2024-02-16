@@ -28,6 +28,7 @@
     <string name="current_week">Эта неделя</string>
     <string name="not_operations">У вас пока нет трат</string>
     <string name="place">Место</string>
+    <string name="date">Дата</string>
     <string-array name="icon_array">
         <item>Банк</item>
         <item>Подписки</item>

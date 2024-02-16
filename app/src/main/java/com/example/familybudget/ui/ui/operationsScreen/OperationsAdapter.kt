@@ -16,7 +16,7 @@ import com.example.familybudget.ui.model.Operation
 import java.io.InputStream
 
 class OperationsAdapter(private val fragment: Fragment? = null) :
-    ListAdapter<Operation, RecyclerView.ViewHolder>(
+    ListAdapter<Operation, OperationsAdapter.ViewHolder>(
         object : DiffUtil.ItemCallback<Operation>() {
             override fun areItemsTheSame(oldItem: Operation, newItem: Operation): Boolean {
                 return oldItem.id == newItem.id
@@ -28,69 +28,31 @@ class OperationsAdapter(private val fragment: Fragment? = null) :
         }
     ) {
 
-    private val HEADER_VIEW_TYPE = 0
-    private val ITEM_VIEW_TYPE = 1
-
-    class HeaderViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val tvDateOperation: TextView = view.findViewById(R.id.tvDateOperation)
-        val tvDateOperationSum: TextView = view.findViewById(R.id.tvDateOperationSum)
-    }
-
-    class ItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val ivOperation: ImageView = itemView.findViewById(R.id.ivOperation)
         val tvOperationCategory: TextView = itemView.findViewById(R.id.tvOperationCategory)
         val tvOperationAmount: TextView = itemView.findViewById(R.id.tvOperationAmount)
         val tvOperationNameOfPlace: TextView = itemView.findViewById(R.id.tvOperationNameOfPlace)
     }
 
-    override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return when (viewType) {
-            HEADER_VIEW_TYPE -> {
-                val headerView = LayoutInflater.from(viewGroup.context)
-                    .inflate(R.layout.header_operations, viewGroup, false)
-                HeaderViewHolder(headerView)
-            }
-            ITEM_VIEW_TYPE -> {
-                val itemView = LayoutInflater.from(viewGroup.context)
-                    .inflate(R.layout.item_operation, viewGroup, false)
-                ItemViewHolder(itemView)
-            }
-            else -> throw IllegalArgumentException("Invalid view type")
-        }
+    override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
+        val view = LayoutInflater.from(viewGroup.context)
+            .inflate(R.layout.item_operation, viewGroup, false)
+        return ViewHolder(view)
     }
 
-    override fun onBindViewHolder(viewHolder: RecyclerView.ViewHolder, position: Int) {
-        val sum: Int
-        when (viewHolder.itemViewType) {
-            HEADER_VIEW_TYPE -> {
-                val headerHolder = viewHolder as HeaderViewHolder
-                sum = currentList.sumOf { it.amount }
-                headerHolder.tvDateOperation.text = currentList.first().date
-                headerHolder.tvDateOperationSum.text = "Итого за день: ${sum}"
-            }
-            ITEM_VIEW_TYPE -> {
-                val itemHolder = viewHolder as ItemViewHolder
-                val currentItem = getItem(position)
-                try {
-                    val inputStream: InputStream? =
-                        fragment?.context?.assets?.open(currentItem.imageUrl)
-                    val bitmap = BitmapFactory.decodeStream(inputStream)
-                    itemHolder.ivOperation.setImageBitmap(bitmap)
-                } catch (ex: Exception) {
-                    Log.e("mylog", "Error: ${ex.stackTraceToString()}")
-                }
-                itemHolder.tvOperationCategory.text = currentItem.nameOfCategory
-                itemHolder.tvOperationAmount.text = currentItem.amount.toString()
-                itemHolder.tvOperationNameOfPlace.text = currentItem.nameOfPlace
-            }
+    override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
+        val currentItem = getItem(position)
+        try {
+            val inputStream: InputStream? =
+                fragment?.context?.assets?.open(currentItem.imageUrl)
+            val bitmap = BitmapFactory.decodeStream(inputStream)
+            viewHolder.ivOperation.setImageBitmap(bitmap)
+        } catch (ex: Exception) {
+            Log.e("mylog", "Error: ${ex.stackTraceToString()}")
         }
-    }
-
-    override fun getItemViewType(position: Int): Int {
-        return if (position == 0) {
-            HEADER_VIEW_TYPE
-        } else {
-            ITEM_VIEW_TYPE
-        }
+        viewHolder.tvOperationCategory.text = currentItem.nameOfCategory
+        viewHolder.tvOperationAmount.text = currentItem.amount
+        viewHolder.tvOperationNameOfPlace.text = currentItem.nameOfPlace
     }
 }

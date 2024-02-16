@@ -49,8 +49,7 @@ class WalletListAdapter : ListAdapter<Wallet, WalletListAdapter.ViewHolder>(
         val currentItem = getItem(position)
         with(viewHolder) {
             tvWalletName.text = currentItem.name
-            tvWalletBalance.text =
-                (currentItem.monthlyIncome - currentItem.monthlyExpenses).toString()
+            tvWalletBalance.text = currentItem.operations.map { it.amount }.sumOf { it.toInt() }.toString()
             cvWallets.setOnClickListener {
                 itemClickListener?.onItemClick(currentItem.id)
             }

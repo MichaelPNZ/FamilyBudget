@@ -13,10 +13,25 @@
         android:paddingBottom="@dimen/space_main_half"
         android:text="@string/add_payment" />
 
-    <View
+    <RadioGroup
         android:layout_width="match_parent"
-        android:layout_height="@dimen/divider_height"
-        android:background="@color/gray" />
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <RadioButton
+            android:id="@+id/rbIncome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/income"/>
+
+        <RadioButton
+            android:id="@+id/rbExpenses"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/expenses"/>
+
+    </RadioGroup>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -36,18 +51,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:autofillHints="amount"
-            android:background="@null"
             android:digits="0123456789"
             android:gravity="end"
             android:inputType="number"
             android:labelFor="@id/etAmountOperationScreen" />
 
     </LinearLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/divider_height"
-        android:background="@color/gray" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -68,10 +77,29 @@
             android:layout_height="wrap_content" />
     </LinearLayout>
 
-    <View
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/divider_height"
-        android:background="@color/gray" />
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingVertical="@dimen/space_main">
+
+        <TextView
+            style="@style/StyleTitle16Gray"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/date" />
+
+        <EditText
+            android:id="@+id/etDateOperationScreen"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autofillHints="date"
+            android:gravity="end"
+            android:inputType="date" />
+
+    </LinearLayout>
+
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -90,18 +118,12 @@
             style="@style/StyleTitle16Black"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:autofillHints="amount"
-            android:background="@null"
+            android:autofillHints="place"
             android:inputType="text"
             android:gravity="end"
             android:labelFor="@id/etNameOfPlaceOperationScreen" />
 
     </LinearLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/divider_height"
-        android:background="@color/gray" />
 
     <Button
         android:id="@+id/btnSaveOperationScreen"

@@ -9,6 +9,11 @@ import com.example.familybudget.ui.data.WalletsRepository
 import com.example.familybudget.ui.model.Operation
 import com.example.familybudget.ui.model.Wallet
 import kotlinx.coroutines.launch
+import java.time.DayOfWeek
+import java.time.LocalDate
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
+import java.util.Locale
 
 class OperationsViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -22,16 +27,56 @@ class OperationsViewModel(application: Application) : AndroidViewModel(applicati
         viewModelScope.launch {
             val walletCache = walletsRepository.getWalletById(walletId)
             if (walletCache != null) {
+                onDayChanged(walletId, 0)
+            }
+        }
+    }
+
+    fun onDayChanged(walletId: Int, position: Int) {
+        val currentDate = LocalDate.now(ZoneId.of("Europe/Moscow"))
+        val dateFormatter = DateTimeFormatter.ofPattern("dd MMMM yyyy", Locale("ru"))
+
+        viewModelScope.launch {
+            val walletCache = walletsRepository.getWalletById(walletId)
+            if (walletCache != null) {
+                var filteredOperations  = listOf<Operation>()
+                when (position) {
+                    0 -> {
+                        filteredOperations = walletCache.operations.filter { operation ->
+                            val operationDate = LocalDate.parse(operation.date, dateFormatter)
+                            operationDate == currentDate
+                        }
+                    }
+                    1 -> {
+                        filteredOperations = walletCache.operations.filter { operation ->
+                            val operationDate = LocalDate.parse(operation.date, dateFormatter)
+                            val startOfWeek = currentDate.minusWeeks(1).with(DayOfWeek.MONDAY) // Начало прошлой недели
+                            val endOfWeek = currentDate.with(DayOfWeek.SUNDAY) // Конец текущей недели
+                            operationDate.isAfter(startOfWeek) && operationDate.isBefore(endOfWeek.plusDays(1))
+                        }
+                    }
+                    2 ->  {
+                        filteredOperations = walletCache.operations.filter { operation ->
+                            val operationDate = LocalDate.parse(operation.date, dateFormatter)
+                            operationDate.month == currentDate.month
+                        }
+                    }
+                    3 ->  {
+                        filteredOperations = walletCache.operations
+                    }
+                }
+
+                val updateList = walletCache.copy(operations = filteredOperations)
                 _operationsUIState.postValue(
                     OperationsUIState(
-                    wallet = walletCache,
-                )
+                        wallet = updateList,
+                    )
                 )
             }
         }
     }
 
-    fun onAddOperationClicked(amount: String, selectedIcon: CharSequence, place: String) {
+    fun onAddOperationClicked(amount: String, selectedIcon: CharSequence, place: String, date: String) {
         val category = when (selectedIcon) {
             "Банк" -> "bank"
             "Подписки" -> "dollar"
@@ -52,21 +97,21 @@ class OperationsViewModel(application: Application) : AndroidViewModel(applicati
             updateUI(
                 wallet,
                 lastId + 1,
-                walletsRepository.getCurrentDate(),
+                date,
                 category,
                 selectedIcon.toString(),
                 place,
-                amount.toInt()
+                amount
             )
         } else {
             updateUI(
                 wallet,
                 0,
-                walletsRepository.getCurrentDate(),
+                date,
                 category,
                 selectedIcon.toString(),
                 place,
-                amount.toInt()
+                amount
             )
         }
     }
@@ -78,7 +123,7 @@ class OperationsViewModel(application: Application) : AndroidViewModel(applicati
         imageUrl: String,
         nameOfCategory: String,
         nameOfPlace: String,
-        amount: Int
+        amount: String
     ) {
         val operations = wallet.operations.plus(
             Operation(

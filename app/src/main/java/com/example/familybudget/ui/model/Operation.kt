@@ -9,5 +9,5 @@ data class Operation(
     val imageUrl: String,
     val nameOfCategory: String,
     val nameOfPlace: String,
-    val amount: Int,
+    val amount: String,
     )
