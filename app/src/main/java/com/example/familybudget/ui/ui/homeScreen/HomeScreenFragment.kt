@@ -12,6 +12,7 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.example.familybudget.databinding.FragmentHomeScreenBinding
+import com.google.android.material.tabs.TabLayout
 
 class HomeScreenFragment : Fragment(), AddMandatoryPaymentsBottomSheet.OnSaveClickListener {
 
@@ -41,24 +42,48 @@ class HomeScreenFragment : Fragment(), AddMandatoryPaymentsBottomSheet.OnSaveCli
             val bottomSheetFragment = AddMandatoryPaymentsBottomSheet()
             bottomSheetFragment.setOnSaveClickListener(this)
             bottomSheetFragment.show(parentFragmentManager, bottomSheetFragment.tag)
-
         }
 
         viewModel.homeScreenUIState.observe(viewLifecycleOwner) { state ->
             with(binding) {
+                if (state.wallet?.mandatoryPayments?.isEmpty() == true) {
+                    tvNoMandatoryExpenses.visibility = View.VISIBLE
+                } else {
+                    tvNoMandatoryExpenses.visibility = View.GONE
+                    mandatoryPaymentsAdapter.submitList(state.wallet?.mandatoryPayments)
+                }
+
+
+                tlHomeScreen.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+                    override fun onTabSelected(tab: TabLayout.Tab?) {
+                        when (tab?.position) {
+                            0 -> {
+                                viewModel.periodChanged(homeScreenFragmentArgs.walletId, 0)
+                                tvRemains.text = "Остаток на ${state.wallet?.currentMonth}"
+                            }
+
+                            1 -> {
+                                viewModel.periodChanged(homeScreenFragmentArgs.walletId, 1)
+                                tvRemains.text = "Остаток за этот год"
+                            }
+
+                            2 -> {
+                                viewModel.periodChanged(homeScreenFragmentArgs.walletId, 2)
+                                tvRemains.text = "Остаток за все время"
+                            }
+                        }
+                    }
+
+                    override fun onTabUnselected(tab: TabLayout.Tab?) {}
+                    override fun onTabReselected(tab: TabLayout.Tab?) {}
+                })
+
                 tvCurrentIncome.text = state.wallet?.monthlyIncome.toString()
                 tvCurrentExpenses.text = state.wallet?.monthlyExpenses.toString()
                 tvBalanceForPeriod.text = state.balance
                 tvMonth.text = state.wallet?.currentMonth
-                tvRemains.text = "Остаток на ${state.wallet?.currentMonth}"
                 tvRemainsAmount.text = state.balance
 
-                if (state.wallet?.mandatoryPayments == null) {
-                    tvNoMandatoryExpenses.visibility = View.VISIBLE
-                } else {
-                    tvNoMandatoryExpenses.visibility = View.GONE
-                    mandatoryPaymentsAdapter.submitList(state.wallet!!.mandatoryPayments)
-                }
 
                 btnWalletSelection.text = state.wallet?.name
                 btnWalletSelection.setOnClickListener {

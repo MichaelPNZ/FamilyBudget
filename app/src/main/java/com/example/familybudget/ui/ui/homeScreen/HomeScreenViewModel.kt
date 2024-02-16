@@ -7,8 +7,13 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.familybudget.ui.data.WalletsRepository
 import com.example.familybudget.ui.model.MandatoryPayment
+import com.example.familybudget.ui.model.Operation
 import com.example.familybudget.ui.model.Wallet
 import kotlinx.coroutines.launch
+import java.time.LocalDate
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
+import java.util.Locale
 
 class HomeScreenViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -23,19 +28,60 @@ class HomeScreenViewModel(application: Application) : AndroidViewModel(applicati
             val allWalletCache = walletsRepository.getWallets()
             val walletCache = walletsRepository.getWalletById(walletId)
             if (allWalletCache == null || walletCache == null) {
-                val wallet = Wallet(currentMonth = walletsRepository.getCurrentMonth())
-                val balance = (wallet.monthlyIncome - wallet.monthlyExpenses).toString()
-                _homeScreenUIState.postValue(HomeScreenUIState(
-                    wallet = wallet,
-                    balance = balance
-                ))
+                val wallet = Wallet(currentMonth = walletsRepository.getCurrentDate())
                 walletsRepository.insertWallet(wallet)
+                periodChanged(walletId, 0)
+
             } else {
-                val balance = (walletCache.monthlyIncome - walletCache.monthlyExpenses).toString()
-                _homeScreenUIState.postValue(HomeScreenUIState(
-                    wallet = walletCache,
-                    balance = balance
-                ))
+                periodChanged(walletId, 0)
+            }
+        }
+    }
+
+    fun periodChanged(walletId: Int, position: Int) {
+        val currentDate = LocalDate.now(ZoneId.of("Europe/Moscow"))
+        val dateFormatter = DateTimeFormatter.ofPattern("dd MMMM yyyy", Locale("ru"))
+
+        viewModelScope.launch {
+            val walletCache = walletsRepository.getWalletById(walletId)
+            if (walletCache != null) {
+                var filteredOperations  = listOf<Operation>()
+                when (position) {
+                    0 -> {
+                        filteredOperations = walletCache.operations.filter { operation ->
+                            val operationDate = LocalDate.parse(operation.date, dateFormatter)
+                            operationDate.year == currentDate.year && operationDate.month == currentDate.month
+                        }
+                    }
+
+                    1 -> {
+                        val startOfLastDecade = currentDate.minusYears(1)
+                        filteredOperations = walletCache.operations.filter { operation ->
+                            val operationDate = LocalDate.parse(operation.date, dateFormatter)
+                            operationDate.isAfter(startOfLastDecade)
+                        }
+                    }
+
+                    2 -> {
+                        filteredOperations = walletCache.operations
+                    }
+                }
+
+                val income = filteredOperations.filter { !it.amount.startsWith('-') }.map { it.amount }
+                val expenses = filteredOperations.filter { it.amount.startsWith('-') }.map { it.amount }
+                val balance = filteredOperations.map { it.amount }.sumOf { it.toInt() }.toString()
+
+                val updateList = walletCache.copy(
+                    monthlyIncome = income.sumOf { it.toInt() },
+                    monthlyExpenses = expenses.sumOf { it.toInt() },
+                    operations = filteredOperations
+                )
+                _homeScreenUIState.postValue(
+                    HomeScreenUIState(
+                        wallet = updateList,
+                        balance = balance
+                    )
+                )
             }
         }
     }

@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/space_main">
+
+    <TextView
+        style="@style/StyleTitle20Black"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingBottom="@dimen/space_main_half"
+        android:text="@string/add_payment" />
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <RadioButton
+            android:id="@+id/rbIncome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/income"/>
+
+        <RadioButton
+            android:id="@+id/rbExpenses"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/expenses"/>
+
+    </RadioGroup>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingVertical="@dimen/space_main">
+
+        <TextView
+            style="@style/StyleTitle16Gray"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sum" />
+
+        <EditText
+            android:id="@+id/etAmountOperationScreen"
+            style="@style/StyleTitle16Black"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autofillHints="amount"
+            android:digits="0123456789"
+            android:gravity="end"
+            android:inputType="number"
+            android:labelFor="@id/etAmountOperationScreen" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingVertical="@dimen/space_main">
+
+        <TextView
+            style="@style/StyleTitle16Gray"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/category" />
+
+        <Spinner
+            android:id="@+id/spinnerOperationScreen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingVertical="@dimen/space_main">
+
+        <TextView
+            style="@style/StyleTitle16Gray"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/date" />
+
+        <EditText
+            android:id="@+id/etDateOperationScreen"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autofillHints="date"
+            android:gravity="end"
+            android:inputType="date" />
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingVertical="@dimen/space_main">
+
+        <TextView
+            style="@style/StyleTitle16Gray"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/place" />
+
+        <EditText
+            android:id="@+id/etNameOfPlaceOperationScreen"
+            style="@style/StyleTitle16Black"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autofillHints="place"
+            android:inputType="text"
+            android:gravity="end"
+            android:labelFor="@id/etNameOfPlaceOperationScreen" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnSaveOperationScreen"
+        style="@style/StyleButtonGrayBackground"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_main"
+        android:backgroundTint="@color/grayBackground"
+        android:text="@string/add"
+        android:textColor="@color/black" />
+
+</LinearLayout>

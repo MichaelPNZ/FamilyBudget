@@ -38,23 +38,25 @@ class AddMandatoryPaymentsBottomSheet : BottomSheetDialogFragment() {
             )
         }
         adapter?.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        binding.spinner.adapter = adapter
-        binding.btnSave.setOnClickListener {
-            val amount = binding.etAmount.text.toString()
-            if (amount == "") {
-                val toast = Toast.makeText(
-                    context,
-                    "Ошибка! Вы не ввели сумму платежа",
-                    Toast.LENGTH_LONG
-                )
-                toast.show()
-            } else {
-                onSaveClickListener.onSaveClicked(
-                    amount,
-                    binding.spinner.selectedItem.toString()
-                )
+        with(binding) {
+            spinner.adapter = adapter
+            btnSave.setOnClickListener {
+                val amount = etAmount.text.toString()
+                if (amount == "") {
+                    val toast = Toast.makeText(
+                        context,
+                        "Ошибка! Вы не ввели сумму платежа",
+                        Toast.LENGTH_LONG
+                    )
+                    toast.show()
+                } else {
+                    onSaveClickListener.onSaveClicked(
+                        amount,
+                        spinner.selectedItem.toString()
+                    )
+                }
+                dismiss()
             }
-            dismiss()
         }
         return binding.root
     }

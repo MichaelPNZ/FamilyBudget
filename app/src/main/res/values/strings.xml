@@ -18,11 +18,17 @@
     <string name="wallets">Счета</string>
     <string name="not_wallet">У вас пока нет счетов</string>
     <string name="sum">Сумма</string>
-    <string name="current_year">Текущий месяц</string>
-    <string name="current_month">Текущий год</string>
+    <string name="current_year">Этот год</string>
+    <string name="current_month">Этот месяц</string>
     <string name="all_time">Все время</string>
     <string name="add_wallet">Добавить счет</string>
     <string name="name_wallet">Название</string>
+    <string name="yesterday">Вчера</string>
+    <string name="today">Сегодня</string>
+    <string name="current_week">Эта неделя</string>
+    <string name="not_operations">У вас пока нет трат</string>
+    <string name="place">Место</string>
+    <string name="date">Дата</string>
     <string-array name="icon_array">
         <item>Банк</item>
         <item>Подписки</item>

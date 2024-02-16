@@ -6,7 +6,7 @@ import androidx.room.TypeConverters
 import com.example.familybudget.ui.model.Converters
 import com.example.familybudget.ui.model.Wallet
 
-@Database(entities = [Wallet::class], version = 2)
+@Database(entities = [Wallet::class], version = 1)
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
 

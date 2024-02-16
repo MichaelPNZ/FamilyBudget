@@ -7,6 +7,9 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
 import java.util.Calendar
 import java.util.Locale
 
@@ -55,15 +58,14 @@ class WalletsRepository(context: Context) {
 
     fun getCurrentMonth(): String {
         val currentDate = Calendar.getInstance().time
-
         val monthFormat = SimpleDateFormat("LLLL", Locale("ru"))
         return monthFormat.format(currentDate)
     }
 
     fun getCurrentDate(): String {
-        val currentDate  = Calendar.getInstance().time
-        val dateFormat = SimpleDateFormat("dd MMMM yyyy", Locale("ru"))
-        return dateFormat.format(currentDate)
+        val currentDate = LocalDate.now(ZoneId.of("Europe/Moscow"))
+        val dateFormatter = DateTimeFormatter.ofPattern("dd MMMM yyyy", Locale("ru"))
+        return dateFormatter.format(currentDate)
     }
 
 }

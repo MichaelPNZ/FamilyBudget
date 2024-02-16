@@ -21,6 +21,9 @@
             app:popExitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_enter_anim"
             app:destination="@id/walletListFragment" />
+        <action
+            android:id="@+id/action_homeScreenFragment_to_operationsFragment"
+            app:destination="@id/operationsFragment" />
     </fragment>
     <fragment
         android:id="@+id/analyticsFragment"
@@ -36,7 +39,19 @@
         android:id="@+id/operationsFragment"
         android:name="com.example.familybudget.ui.ui.operationsScreen.OperationsFragment"
         android:label="fragment_operations"
-        tools:layout="@layout/fragment_operations" />
+        tools:layout="@layout/fragment_operations" >
+        <action
+            android:id="@+id/action_operationsFragment_to_walletListFragment"
+            app:destination="@id/walletListFragment" >
+            <argument
+                android:name="currentWalletId"
+                android:defaultValue="0" />
+        </action>
+        <argument
+            android:name="walletId"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </fragment>
     <fragment
         android:id="@+id/walletListFragment"
         android:name="com.example.familybudget.ui.ui.walletList.WalletListFragment"

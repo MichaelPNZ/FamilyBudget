@@ -31,7 +31,7 @@ class WalletListViewModel(application: Application): AndroidViewModel(applicatio
         val update = Wallet(
             id = lastId + 1,
             name = name,
-            currentMonth = walletsRepository.getCurrentMonth()
+            currentMonth = walletsRepository.getCurrentDate()
         )
         viewModelScope.launch {
             val updateList = currentHomeScreenUIState.copy(
